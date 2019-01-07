@@ -84,7 +84,7 @@ namespace MiBand_Heartrate
             }
         }
 
-        private void saveCSVCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void SaveCSVCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             if (saveCSVCheckbox.Checked) {
                 device.HeartrateChanged += DeviceControl.Instance.WriteDataInCSV;
@@ -94,7 +94,7 @@ namespace MiBand_Heartrate
             }
         }
 
-        private void realtimeFileCheck_CheckedChanged(object sender, EventArgs e)
+        private void RealtimeFileCheck_CheckedChanged(object sender, EventArgs e)
         {
             if (realtimeFileCheck.Checked) {
                 device.HeartrateChanged += DeviceControl.Instance.WriteRealtimeHeartrateInFile;

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.deviceList = new System.Windows.Forms.ComboBox();
             this.connectButton = new System.Windows.Forms.Button();
+            this.deviceList = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,14 +45,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Select Mi Band device";
             // 
-            // deviceList
-            // 
-            this.deviceList.FormattingEnabled = true;
-            this.deviceList.Location = new System.Drawing.Point(6, 19);
-            this.deviceList.Name = "deviceList";
-            this.deviceList.Size = new System.Drawing.Size(348, 21);
-            this.deviceList.TabIndex = 0;
-            // 
             // connectButton
             // 
             this.connectButton.Location = new System.Drawing.Point(6, 46);
@@ -63,6 +55,14 @@
             this.connectButton.UseVisualStyleBackColor = true;
             this.connectButton.Click += new System.EventHandler(this.connectButton_Click);
             // 
+            // deviceList
+            // 
+            this.deviceList.FormattingEnabled = true;
+            this.deviceList.Location = new System.Drawing.Point(6, 19);
+            this.deviceList.Name = "deviceList";
+            this.deviceList.Size = new System.Drawing.Size(348, 21);
+            this.deviceList.TabIndex = 0;
+            // 
             // ConnectionFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -71,6 +71,7 @@
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ConnectionFrame";
+            this.ShowIcon = false;
             this.Text = "Mi Band - Connection";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ConnectionFrame_FormClosing);
             this.Load += new System.EventHandler(this.ConnectionFrame_Load);

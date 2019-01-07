@@ -120,7 +120,7 @@
             this.realtimeFileCheck.TabIndex = 1;
             this.realtimeFileCheck.Text = "Write heartrate value in file";
             this.realtimeFileCheck.UseVisualStyleBackColor = true;
-            this.realtimeFileCheck.CheckedChanged += new System.EventHandler(this.realtimeFileCheck_CheckedChanged);
+            this.realtimeFileCheck.CheckedChanged += new System.EventHandler(this.RealtimeFileCheck_CheckedChanged);
             // 
             // saveCSVCheckbox
             // 
@@ -131,7 +131,7 @@
             this.saveCSVCheckbox.TabIndex = 0;
             this.saveCSVCheckbox.Text = "Save data in CSV file";
             this.saveCSVCheckbox.UseVisualStyleBackColor = true;
-            this.saveCSVCheckbox.CheckedChanged += new System.EventHandler(this.saveCSVCheckbox_CheckedChanged);
+            this.saveCSVCheckbox.CheckedChanged += new System.EventHandler(this.SaveCSVCheckbox_CheckedChanged);
             // 
             // startButton
             // 
@@ -167,6 +167,7 @@
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ControlFrame";
+            this.ShowIcon = false;
             this.Text = "Mi Band - Heartrate";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ControlFrame_FormClosing);
             this.Load += new System.EventHandler(this.ControlFrame_Load);

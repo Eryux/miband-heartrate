@@ -35,6 +35,7 @@ namespace MiBand_Heartrate
         byte[] _authKey;
 
         GattDeviceService HMSService = null;
+        GattCharacteristic HMRcharacteristic = null;
         GattCharacteristic HMCCharacteristic = null;
         GattCharacteristic SNSCharacteristic = null;
 
@@ -175,10 +176,12 @@ namespace MiBand_Heartrate
                 if (characteristicsResult.Status == GattCommunicationStatus.Success && characteristicsResult.Characteristics.Count > 0)
                 {
                     GattCharacteristic characteristic = characteristicsResult.Characteristics[0];
+                    HMRcharacteristic = characteristic;
+
                     GattCommunicationStatus status = await characteristic.WriteClientCharacteristicConfigurationDescriptorAsync(GattClientCharacteristicConfigurationDescriptorValue.Notify);
                     if (status == GattCommunicationStatus.Success)
                     {
-                        characteristic.ValueChanged += (GattCharacteristic sender, GattValueChangedEventArgs args) => {
+                        HMRcharacteristic.ValueChanged += (GattCharacteristic sender, GattValueChangedEventArgs args) => {
                             var reader = DataReader.FromBuffer(args.CharacteristicValue);
                             UInt16 heartrate = reader.ReadUInt16();
                             HeartrateChanged?.Invoke(this, heartrate);
@@ -230,7 +233,7 @@ namespace MiBand_Heartrate
         {
             while (HMCCharacteristic != null){
                 manager.Write(HMCCharacteristic, new byte[] { 0x16 });
-                Thread.Sleep(10000);
+                Thread.Sleep(5000);
             }
         }
     }
