@@ -43,6 +43,13 @@ namespace MiBand_Heartrate
 
         public event OnHeartrateChangedHandler HeartrateChanged;
 
+        bool continuousMode = false;
+
+        public bool ContinuousMode {
+            get { return continuousMode; }
+            set { if (HMCCharacteristic == null) continuousMode = value; }
+        }
+
         // ----------------------------
 
         public MiBand(BLEManager bluetoothLEManager) { manager = bluetoothLEManager; }
@@ -175,35 +182,42 @@ namespace MiBand_Heartrate
                 GattCharacteristicsResult characteristicsResult = await service.GetCharacteristicsForUuidAsync(new Guid(HRM_UUID));
                 if (characteristicsResult.Status == GattCommunicationStatus.Success && characteristicsResult.Characteristics.Count > 0)
                 {
-                    GattCharacteristic characteristic = characteristicsResult.Characteristics[0];
-                    HMRcharacteristic = characteristic;
+                    HMRcharacteristic = characteristicsResult.Characteristics[0];
 
-                    GattCommunicationStatus status = await characteristic.WriteClientCharacteristicConfigurationDescriptorAsync(GattClientCharacteristicConfigurationDescriptorValue.Notify);
+                    GattCommunicationStatus status = await HMRcharacteristic.WriteClientCharacteristicConfigurationDescriptorAsync(GattClientCharacteristicConfigurationDescriptorValue.Notify);
                     if (status == GattCommunicationStatus.Success)
                     {
                         HMRcharacteristic.ValueChanged += (GattCharacteristic sender, GattValueChangedEventArgs args) => {
                             var reader = DataReader.FromBuffer(args.CharacteristicValue);
                             UInt16 heartrate = reader.ReadUInt16();
-                            HeartrateChanged?.Invoke(this, heartrate);
+
+                            if (heartrate > 0) { // Other wise there is a high probability that sensor failed to retreive heart rate or that you're dead ;)
+                                HeartrateChanged?.Invoke(this, heartrate);
+                            }
+
+                            if ( ! continuousMode)
+                                manager.Write(HMCCharacteristic, new byte[] { 0x15, 0x02, 0x01 });
                         };
                     }
                 }
 
-                // Enable continious measurements
+                // Enable measurements
                 characteristicsResult = await service.GetCharacteristicsForUuidAsync(new Guid(HMC_UUID));
                 if (characteristicsResult.Status == GattCommunicationStatus.Success && characteristicsResult.Characteristics.Count > 0)
                 {
-                    GattCharacteristic characteristic = characteristicsResult.Characteristics[0];
-                    HMCCharacteristic = characteristic;
+                    HMCCharacteristic = characteristicsResult.Characteristics[0];
 
-                    manager.Write(characteristic, new byte[] { 0x15, 0x01, 0x01 });
+                    if (continuousMode)
+                        manager.Write(HMCCharacteristic, new byte[] { 0x15, 0x01, 0x01 });
+                    else
+                        manager.Write(HMCCharacteristic, new byte[] { 0x15, 0x02, 0x01 });
 
                     if (SNSCharacteristic != null) {
                         manager.Write(SNSCharacteristic, new byte[] { 0x02 });
                     }
                 }
 
-                // Enable ping HMC every 10 sec.
+                // Enable ping HMC every 5 sec.
                 pingThread = new Thread(new ThreadStart(RunPingSensor));
                 pingThread.Start();
 
@@ -214,18 +228,28 @@ namespace MiBand_Heartrate
         public void StopMonitorHeartrate()
         {
             if (HMCCharacteristic != null) {
-                manager.Write(HMCCharacteristic, new byte[] { 0x15, 0x01, 0x00 });
-                HMCCharacteristic = null;
+                if (continuousMode)
+                    manager.Write(HMCCharacteristic, new byte[] { 0x15, 0x01, 0x00 });
+                else
+                    manager.Write(HMCCharacteristic, new byte[] { 0x15, 0x02, 0x00 });
+            }
+
+            HMCCharacteristic = null;
+
+            if (pingThread != null) {
+                pingThread.Join();
+                pingThread = null;
+            }
+
+
+            if (SNSCharacteristic != null) {
+                SNSCharacteristic.Service.Dispose();
+                SNSCharacteristic = null;
             }
 
             if (HMSService != null) {
                 HMSService.Dispose();
                 HMSService = null;
-            }
-
-            if (pingThread != null) {
-                pingThread.Join();
-                pingThread = null;
             }
         }
 

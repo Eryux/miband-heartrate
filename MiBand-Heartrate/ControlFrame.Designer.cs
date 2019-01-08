@@ -40,6 +40,7 @@
             this.saveCSVCheckbox = new System.Windows.Forms.CheckBox();
             this.startButton = new System.Windows.Forms.Button();
             this.stopButton = new System.Windows.Forms.Button();
+            this.continuousModeCheck = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -102,11 +103,12 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.continuousModeCheck);
             this.groupBox2.Controls.Add(this.realtimeFileCheck);
             this.groupBox2.Controls.Add(this.saveCSVCheckbox);
             this.groupBox2.Location = new System.Drawing.Point(12, 125);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(259, 70);
+            this.groupBox2.Size = new System.Drawing.Size(259, 93);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Options";
@@ -136,7 +138,7 @@
             // startButton
             // 
             this.startButton.Enabled = false;
-            this.startButton.Location = new System.Drawing.Point(13, 202);
+            this.startButton.Location = new System.Drawing.Point(12, 224);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(132, 35);
             this.startButton.TabIndex = 3;
@@ -147,7 +149,7 @@
             // stopButton
             // 
             this.stopButton.Enabled = false;
-            this.stopButton.Location = new System.Drawing.Point(151, 201);
+            this.stopButton.Location = new System.Drawing.Point(152, 224);
             this.stopButton.Name = "stopButton";
             this.stopButton.Size = new System.Drawing.Size(120, 35);
             this.stopButton.TabIndex = 4;
@@ -155,11 +157,22 @@
             this.stopButton.UseVisualStyleBackColor = true;
             this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
             // 
+            // continuousModeCheck
+            // 
+            this.continuousModeCheck.AutoSize = true;
+            this.continuousModeCheck.Location = new System.Drawing.Point(7, 67);
+            this.continuousModeCheck.Name = "continuousModeCheck";
+            this.continuousModeCheck.Size = new System.Drawing.Size(108, 17);
+            this.continuousModeCheck.TabIndex = 2;
+            this.continuousModeCheck.Text = "Continuous mode";
+            this.continuousModeCheck.UseVisualStyleBackColor = true;
+            this.continuousModeCheck.CheckedChanged += new System.EventHandler(this.ContinuousModeCheck_CheckedChanged);
+            // 
             // ControlFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 248);
+            this.ClientSize = new System.Drawing.Size(284, 267);
             this.Controls.Add(this.stopButton);
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.groupBox2);
@@ -194,5 +207,6 @@
         private System.Windows.Forms.CheckBox saveCSVCheckbox;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Button stopButton;
+        private System.Windows.Forms.CheckBox continuousModeCheck;
     }
 }

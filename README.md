@@ -29,6 +29,15 @@ Enable and monitor heartrate with Mi Band 2 device on Windows 10.
 * Start monitoring heartrate by clicking on start button
 
 
+### Options
+
+* **Save data in CSV file :** Log your heart rate data into a CSV file with date and time and heart rate value
+
+* **Write heartrate value in file :** Continuously write heart rate value in file
+
+* **Continuous mode :** Mi Band 2 heart rate sensor can work in two different mode, one-shot and continuous. One-shot mode take ~5 sec. for retrieve a heart rate value and fails more often than continuous mode but the heart rate value is more precise. Continuous mode fails less and update more often but the value is less precise.
+
+
 ### Build requirements
 
 * Windows SDK
@@ -49,7 +58,7 @@ Enable and monitor heartrate with Mi Band 2 device on Windows 10.
 * [Microsoft GATT Documentation](https://docs.microsoft.com/fr-fr/windows/uwp/devices-sensors/bluetooth-low-energy-overview)
 * [Mi Band 2 Authentication by leojrfs](https://leojrfs.github.io/writing/miband2-part1-auth/#reference), [python](https://github.com/leojrfs/miband2)
 * https://github.com/creotiv/MiBand2
-* [How To Use Android BLE to Communicate with Bluetooth Devices - An Overview & Code examples by Shahar Avigezer](https://medium.com/@avigezerit/bluetooth-low-energy-on-android-22bc7310387a)
+* [How I hacked my Xiaomi MiBand 2 fitness tracker — a step-by-step Linux guide by Andrey Nikishaev](https://medium.com/machine-learning-world/how-i-hacked-xiaomi-miband-2-to-control-it-from-linux-a5bd2f36d3ad)
 
 
 ### License

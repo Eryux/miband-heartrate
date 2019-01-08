@@ -47,6 +47,7 @@ namespace MiBand_Heartrate
         private void startButton_Click(object sender, EventArgs e)
         {
             startButton.Enabled = false;
+            continuousModeCheck.Enabled = false;
             device.StartMonitorHeartrate();
             device.HeartrateChanged += OnHeartrateChange;
             stopButton.Enabled = true;
@@ -58,6 +59,7 @@ namespace MiBand_Heartrate
             device.StopMonitorHeartrate();
             device.HeartrateChanged -= OnHeartrateChange;
             heartrateLabel.Text = "--";
+            continuousModeCheck.Enabled = true;
             startButton.Enabled = true;
         }
 
@@ -101,6 +103,16 @@ namespace MiBand_Heartrate
             }
             else {
                 device.HeartrateChanged -= DeviceControl.Instance.WriteRealtimeHeartrateInFile;
+            }
+        }
+
+        private void ContinuousModeCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            if (continuousModeCheck.Checked) {
+                device.ContinuousMode = true;
+            }
+            else {
+                device.ContinuousMode = false;
             }
         }
     }
