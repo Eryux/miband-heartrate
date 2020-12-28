@@ -2,7 +2,7 @@
 
 Enable and monitor heartrate with Mi Band 2 device on Windows 10.
 
-![alt text](http://devhatch.fr/uploads/images/mibandheatrate-screen.png "Mi Band Heartrate screen")
+![miband heartrate](https://github.com/Eryux/miband-heartrate/raw/master/mibandheatrate-screen.png "Mi Band Heartrate screen")
 
 
 ### Requirements
@@ -14,7 +14,7 @@ Enable and monitor heartrate with Mi Band 2 device on Windows 10.
 
 ### Usage
 
-* Download and unzip the lastest build from release section
+* Download and unzip the latest build from release section
 
 * Un-pairing your Mi Band 2 from any devices
 
