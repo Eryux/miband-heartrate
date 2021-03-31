@@ -1,0 +1,38 @@
+﻿<Window x:Class="MiBand_Heartrate_2.ConnectionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MiBand_Heartrate_2"
+        xmlns:device="clr-namespace:MiBand_Heartrate_2.Devices"
+        xmlns:extra="clr-namespace:MiBand_Heartrate_2.Extras"
+        mc:Ignorable="d"
+        Title="Heartrate Monitor - Connection" SizeToContent="WidthAndHeight" Icon="icon.ico">
+
+    <Window.Resources>
+        <ResourceDictionary Source="Style.xaml"></ResourceDictionary>
+    </Window.Resources>
+
+    <Window.DataContext>
+        <local:ConnectionWindowViewModel></local:ConnectionWindowViewModel>
+    </Window.DataContext>
+
+    <StackPanel Background="White" Margin="10">
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Select your device" Width="150"></Label>
+            <ComboBox Width="200" SelectedValue="{Binding SelectedDevice, Mode=TwoWay}" ItemsSource="{Binding Devices}" DisplayMemberPath="Name"></ComboBox>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" Margin="0 10">
+            <Label Content="Select the model" Width="150"></Label>
+            <ComboBox Width="150" SelectedValue="{Binding DeviceModel, Mode=TwoWay}" ItemsSource="{Binding Source={extra:EnumExtension {x:Type device:DeviceModel}}}" DisplayMemberPath="Description" SelectedValuePath="Value"></ComboBox>
+        </StackPanel>
+
+        <Separator></Separator>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Cancel" Padding="10 5" Margin="5 10 5 5" Command="{Binding Command_Cancel}"></Button>
+            <Button Content="Connect" Padding="10 5" Margin="5 10 5 5" Command="{Binding Command_Connect}"></Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

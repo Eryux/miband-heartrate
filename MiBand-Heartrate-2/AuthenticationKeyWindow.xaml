@@ -1,0 +1,36 @@
+﻿<Window x:Class="MiBand_Heartrate_2.AuthenticationKeyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MiBand_Heartrate_2"
+        mc:Ignorable="d"
+        Title="Heartrate Monitor - Authentication" SizeToContent="WidthAndHeight" Icon="icon.ico">
+    
+    <Window.Resources>
+        <ResourceDictionary Source="Style.xaml"></ResourceDictionary>
+    </Window.Resources>
+
+    <Window.DataContext>
+        <local:AuthenticationKeyViewModel></local:AuthenticationKeyViewModel>
+    </Window.DataContext>
+
+    <StackPanel Background="White" Margin="10">
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Enter your auth. key" Width="150"></Label>
+            <TextBox Width="240" Text="{Binding Key, Mode=TwoWay}" VerticalContentAlignment="Center"></TextBox>
+        </StackPanel>
+
+        <Separator Margin="0 10"></Separator>
+
+        <TextBlock Margin="0" TextWrapping="Wrap" HorizontalAlignment="Left">This device need an authentication key for being used.
+            <LineBreak />If you don't know how to obtain it, check the website <Hyperlink NavigateUri="http://www.freemyband.com">freemyband.com</Hyperlink>.</TextBlock>
+
+        <Separator Margin="0 10 0 0"></Separator>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Cancel" Padding="10 5" Margin="5 10 5 5" Command="{Binding Command_Cancel}"></Button>
+            <Button Content="Ok" Padding="10 5" Margin="5 10 5 5" Command="{Binding Command_Valid}"></Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

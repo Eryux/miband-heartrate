@@ -1,13 +1,18 @@
 # Mi Band Heartrate
 
-Enable and monitor heartrate with Mi Band 2 device on Windows 10.
+Enable and monitor heartrate with Mi Band device on Windows 10.
 
 ![miband heartrate](https://github.com/Eryux/miband-heartrate/raw/master/mibandheatrate-screen.png "Mi Band Heartrate screen")
+
+### Suported devices
+
+* Mi Band 2
+* Mi Band 4
 
 
 ### Requirements
 
-* .NET Framework 4.5 ([download](https://www.microsoft.com/fr-fr/download/details.aspx?id=30653))
+* .NET Framework 4.8 ([download](https://dotnet.microsoft.com/download/dotnet-framework/net48))
 * Windows 10 1703+ (Creators Update)
 * Bluetooth adapter supporting Bluetooth 4.0/4.2 BLE
 
@@ -16,32 +21,46 @@ Enable and monitor heartrate with Mi Band 2 device on Windows 10.
 
 * Download and unzip the latest build from release section
 
+#### For Mi Band 2
+
 * Un-pairing your Mi Band 2 from any devices
 
-* Pairing Mi Band 2 to your computer
+* Connect and pair your Mi Band 2 to your computer
 
 * Launch `MiBand-Heartrate.exe`
 
-* Select your device Mi Band 2 from the list and then connect (if no device showed, be sure to have un-paired and paired your device correctly, turned on the bluetooth adapter and the wifi).
+* Click on `Connect` button and select your device from device list and set model on `Mi Band 2` then click on `Connect`
 
-* Click on lock for authenticate your device and push Mi Band 2 button
+* Once your device is successfully connected and authenticated, click on `Start` button
 
-* Start monitoring heartrate by clicking on start button
+### For Mi Band 4
+
+* Get your authentication key of your device, visit ([freemyband.com](http://www.freemyband.com/)) for more information
+
+* Connect and pair you Mi Band 4 to your computer
+
+* Launch `MiBand-Heartrate.exe`
+
+* Click on `Connect` button and select your device from device list and set model on `Mi Band 4` then click on `Connect`
+
+* A new window should appear, enter your authentication key then click on `Ok`
+
+* Once your device is successfully connected and authenticated, click on `Start` button
 
 
 ### Options
 
-* **Save data in CSV file :** Log your heart rate data into a CSV file with date and time and heart rate value
+* **Export data in CSV file :** Log your heartrate data into a CSV file with date, time and heartrate value
 
-* **Write heartrate value in file :** Continuously write heart rate value in file
+* **Write realtime date in text file :** Continuously write heartrate value inside a text file
 
-* **Continuous mode :** Mi Band 2 heart rate sensor can work in two different mode, one-shot and continuous. One-shot mode take ~5 sec. for retrieve a heart rate value and fails more often than continuous mode but the heart rate value is more precise. Continuous mode fails less and update more often but the value is less precise.
+* **Continuous mode :** Mi Band heartrate sensor can work in two different mode, one-shot and continuous. One-shot mode take 5 to 10 sec. to retrieve a heartrate value then stop. Continuous mode update heartrate value every 2 to 5 sec.
 
 
 ### Build requirements
 
 * Windows SDK
-* Visual Studio 2017
+* Visual Studio 2019
 
 
 ### Build
@@ -50,7 +69,7 @@ Enable and monitor heartrate with Mi Band 2 device on Windows 10.
 
 * Open `MiBand-Heartrate.sln` with Visual Studio
 
-* Right-click on MiBand-Heartrate solution and select generate
+* Right-click on MiBand-Heartrate-2 solution and select generate
 
 
 ### Useful links
