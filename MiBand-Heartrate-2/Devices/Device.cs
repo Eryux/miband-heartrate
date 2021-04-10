@@ -81,7 +81,7 @@ namespace MiBand_Heartrate_2.Devices
 
         public abstract void Dispose();
 
-        public abstract void Connect(string deviceId);
+        public abstract void Connect();
 
         public abstract void Disconnect();
 

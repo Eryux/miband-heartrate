@@ -66,6 +66,9 @@ namespace MiBand_Heartrate_2
             set
             {
                 _continuousMode = value;
+
+                Setting.Set("ContinuousMode", _continuousMode);
+
                 InvokePropertyChanged("ContinuousMode");
             }
         }
@@ -78,6 +81,9 @@ namespace MiBand_Heartrate_2
             set
             {
                 _enableFileOutput = value;
+
+                Setting.Set("FileOutput", _enableFileOutput);
+
                 InvokePropertyChanged("EnableFileOutput");
             }
         }
@@ -90,10 +96,14 @@ namespace MiBand_Heartrate_2
             set
             {
                 _enableCSVOutput = value;
+
+                Setting.Set("CSVOutput", _enableCSVOutput);
+
                 InvokePropertyChanged("EnableCSVOutput");
             }
         }
 
+        bool _guard = false;
 
         DeviceHeartrateFileOutput _fileOutput = null;
 
@@ -101,7 +111,12 @@ namespace MiBand_Heartrate_2
 
         // --------------------------------------
 
-        public MainWindowViewModel() { }
+        public MainWindowViewModel()
+        {
+            ContinuousMode = Setting.Get("ContinuousMode", true);
+            EnableFileOutput = Setting.Get("FileOutput", false);
+            EnableCSVOutput = Setting.Get("CSVOutput", false);
+        }
 
         ~MainWindowViewModel()
         {
@@ -138,6 +153,20 @@ namespace MiBand_Heartrate_2
                 System.Windows.Application.Current.Dispatcher.Invoke((Action)delegate {
                     DeviceUpdate();
                 });
+
+                if (Device != null)
+                {
+                    // Connection lost, we try to re-connect
+                    if (Device.Status == Devices.DeviceStatus.OFFLINE && _guard)
+                    {
+                        _guard = false;
+                        Device.Connect();
+                    }
+                    else if (Device.Status != Devices.DeviceStatus.OFFLINE)
+                    {
+                        _guard = true;
+                    }
+                }
             }
             else if (e.PropertyName == "HeartrateMonitorStarted")
             {
@@ -192,8 +221,12 @@ namespace MiBand_Heartrate_2
                     {
                         if (Device != null)
                         {
+                            _guard = false;
                             Device.Disconnect();
-                        }
+                            Device = null;
+                        } 
+                        
+                        Device = null;
                     }, o =>
                     {
                         return Device != null && Device.Status != Devices.DeviceStatus.OFFLINE;

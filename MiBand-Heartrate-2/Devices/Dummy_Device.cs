@@ -27,7 +27,7 @@ namespace MiBand_Heartrate_2.Devices
             }
         }
 
-        public override void Connect(string deviceId)
+        public override void Connect()
         {
             if (Status == Devices.DeviceStatus.OFFLINE)
             {

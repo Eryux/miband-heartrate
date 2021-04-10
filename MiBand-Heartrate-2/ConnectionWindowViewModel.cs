@@ -137,7 +137,7 @@ namespace MiBand_Heartrate_2
 
                         if (device != null)
                         {
-                            device.Connect(SelectedDevice.Id);
+                            device.Connect();
                             
                             if (Main != null)
                             {
