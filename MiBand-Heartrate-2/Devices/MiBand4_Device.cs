@@ -43,6 +43,8 @@ namespace MiBand_Heartrate_2.Devices
 
         bool _continuous = false;
 
+        string _deviceId = "";
+
 
         public MiBand4_Device(DeviceInformation d, string key)
         {
@@ -50,6 +52,7 @@ namespace MiBand_Heartrate_2.Devices
             Model = DeviceModel.MIBAND_4;
 
             _key = EncodeKey(key);
+            _deviceId = d.Id;
         }
 
         public static byte[] EncodeKey(string key)
@@ -175,11 +178,13 @@ namespace MiBand_Heartrate_2.Devices
         }
 
 
-        public override void Connect(string deviceId)
+        public override void Connect()
         {
+            Disconnect();
+
             if (_connectedDevice == null)
             {
-                var task = Task.Run(async () => await BluetoothLEDevice.FromIdAsync(deviceId));
+                var task = Task.Run(async () => await BluetoothLEDevice.FromIdAsync(_deviceId));
                 
                 _connectedDevice = task.Result;
                 _connectedDevice.ConnectionStatusChanged += OnDeviceConnectionChanged;

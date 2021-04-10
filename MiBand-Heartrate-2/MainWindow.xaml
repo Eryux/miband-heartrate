@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MiBand_Heartrate_2"
         mc:Ignorable="d"
-        Title="Heartrate Monitor" SizeToContent="Height" Width="400" MinHeight="360" MinWidth="350" Closing="Window_Closing" Icon="icon.ico">
+        Title="Heartrate Monitor" Width="400" Height="360" MinHeight="360" MinWidth="400" Closing="Window_Closing"  Icon="icon.ico">
 
     <Window.Resources>
         <ResourceDictionary Source="Style.xaml"></ResourceDictionary>
