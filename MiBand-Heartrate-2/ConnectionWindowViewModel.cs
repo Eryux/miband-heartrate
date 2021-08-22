@@ -33,7 +33,7 @@ namespace MiBand_Heartrate_2
             }
         }
 
-        DeviceModel _deviceModel = DeviceModel.MIBAND_2;
+        DeviceModel _deviceModel = DeviceModel.MIBAND_2_3;
 
         public DeviceModel DeviceModel
         {
@@ -121,8 +121,8 @@ namespace MiBand_Heartrate_2
                             case DeviceModel.DUMMY:
                                 device = new Dummy_Device();
                                 break;
-                            case DeviceModel.MIBAND_2:
-                                device = new MiBand2_Device(SelectedDevice);
+                            case DeviceModel.MIBAND_2_3:
+                                device = new MiBand2_3_Device(SelectedDevice);
                                 break;
                             case DeviceModel.MIBAND_4:
                                 var authWindow = new AuthenticationKeyWindow();

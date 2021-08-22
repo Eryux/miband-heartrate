@@ -79,7 +79,7 @@
     <Compile Include="Converters\DeviceStatusConverter.cs" />
     <Compile Include="Devices\Device.cs" />
     <Compile Include="Devices\Dummy_Device.cs" />
-    <Compile Include="Devices\MiBand2_Device.cs" />
+    <Compile Include="Devices\MiBand2_3_Device.cs" />
     <Compile Include="Devices\MiBand4_Device.cs" />
     <Compile Include="Extras\EnumExtension.cs" />
     <Compile Include="Extras\DeviceHeartrateCSVOutput.cs" />

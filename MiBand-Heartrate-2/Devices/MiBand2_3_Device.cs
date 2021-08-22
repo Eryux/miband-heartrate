@@ -11,7 +11,7 @@ using Windows.Storage.Streams;
 
 namespace MiBand_Heartrate_2.Devices
 {
-    public class MiBand2_Device : Device
+    public class MiBand2_3_Device : Device
     {
         const string AUTH_SRV_ID = "0000fee1-0000-1000-8000-00805f9b34fb";
         const string AUTH_CHAR_ID = "00000009-0000-3512-2118-0009af100700";
@@ -47,12 +47,12 @@ namespace MiBand_Heartrate_2.Devices
         string _deviceId = "";
 
 
-        public MiBand2_Device(DeviceInformation d)
+        public MiBand2_3_Device(DeviceInformation d)
         {
             _deviceId = d.Id;
 
             Name = d.Name;
-            Model = DeviceModel.MIBAND_2;
+            Model = DeviceModel.MIBAND_2_3;
         }
 
 
