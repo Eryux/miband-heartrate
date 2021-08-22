@@ -4,9 +4,10 @@ Enable and monitor heartrate with Mi Band device on Windows 10.
 
 ![miband heartrate](https://github.com/Eryux/miband-heartrate/raw/master/mibandheatrate-screen.png "Mi Band Heartrate screen")
 
-### Suported devices
+### Supported devices
 
 * Mi Band 2
+* Mi Band 3
 * Mi Band 4
 
 
@@ -21,15 +22,15 @@ Enable and monitor heartrate with Mi Band device on Windows 10.
 
 * Download and unzip the latest build from release section
 
-#### For Mi Band 2
+#### For Mi Band 2 or Mi Band 3
 
-* Un-pairing your Mi Band 2 from any devices
+* Un-pairing your Mi Band 2/3 from any devices
 
-* Connect and pair your Mi Band 2 to your computer
+* Connect and pair your Mi Band 2/3 to your computer
 
 * Launch `MiBand-Heartrate.exe`
 
-* Click on `Connect` button and select your device from device list and set model on `Mi Band 2` then click on `Connect`
+* Click on `Connect` button and select your device from device list and set model on `Mi Band 2` or `Mi Band 3` then click on `Connect`
 
 * Once your device is successfully connected and authenticated, click on `Start` button
 

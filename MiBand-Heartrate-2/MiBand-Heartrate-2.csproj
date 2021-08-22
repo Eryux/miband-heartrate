@@ -40,6 +40,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.WindowsRuntime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETCore\v4.5\System.Runtime.WindowsRuntime.dll</HintPath>
@@ -78,12 +79,13 @@
     <Compile Include="Converters\DeviceStatusConverter.cs" />
     <Compile Include="Devices\Device.cs" />
     <Compile Include="Devices\Dummy_Device.cs" />
-    <Compile Include="Devices\MiBand2_Device.cs" />
+    <Compile Include="Devices\MiBand2_3_Device.cs" />
     <Compile Include="Devices\MiBand4_Device.cs" />
     <Compile Include="Extras\EnumExtension.cs" />
     <Compile Include="Extras\DeviceHeartrateCSVOutput.cs" />
     <Compile Include="Extras\DeviceHeartrateFileOutput.cs" />
     <Compile Include="Extras\MessageWindow.cs" />
+    <Compile Include="Extras\Setting.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="ViewModel.cs" />
     <Compile Include="RelayCommand.cs" />

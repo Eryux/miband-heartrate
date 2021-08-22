@@ -11,7 +11,7 @@ using Windows.Storage.Streams;
 
 namespace MiBand_Heartrate_2.Devices
 {
-    public class MiBand2_Device : Device
+    public class MiBand2_3_Device : Device
     {
         const string AUTH_SRV_ID = "0000fee1-0000-1000-8000-00805f9b34fb";
         const string AUTH_CHAR_ID = "00000009-0000-3512-2118-0009af100700";
@@ -44,11 +44,15 @@ namespace MiBand_Heartrate_2.Devices
 
         bool _continuous = false;
 
+        string _deviceId = "";
 
-        public MiBand2_Device(DeviceInformation d)
+
+        public MiBand2_3_Device(DeviceInformation d)
         {
+            _deviceId = d.Id;
+
             Name = d.Name;
-            Model = DeviceModel.MIBAND_2;
+            Model = DeviceModel.MIBAND_2_3;
         }
 
 
@@ -169,11 +173,13 @@ namespace MiBand_Heartrate_2.Devices
         }
 
 
-        public override void Connect(string deviceId)
+        public override void Connect()
         {
+            Disconnect();
+
             if (_connectedDevice == null)
             {
-                var task = Task.Run(async () => await BluetoothLEDevice.FromIdAsync(deviceId));
+                var task = Task.Run(async () => await BluetoothLEDevice.FromIdAsync(_deviceId));
                 
                 _connectedDevice = task.Result;
                 _connectedDevice.ConnectionStatusChanged += OnDeviceConnectionChanged;

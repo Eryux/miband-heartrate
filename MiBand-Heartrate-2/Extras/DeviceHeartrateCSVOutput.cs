@@ -31,7 +31,7 @@ namespace MiBand_Heartrate_2.Extras
 
         private void OnDeviceChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Heartrate")
+            if (e.PropertyName == "Heartrate" && Setting.Get("CSVOutput", false))
             {
                 try
                 {

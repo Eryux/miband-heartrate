@@ -8,9 +8,9 @@ namespace MiBand_Heartrate_2.Devices
         [Description("Hidden")]
         DUMMY,
 
-        [Description("Mi Band 2")]
-        MIBAND_2,
-        
+        [Description("Mi Band 2/3")]
+        MIBAND_2_3,
+
         [Description("Mi Band 4")]
         MIBAND_4
     }
@@ -81,7 +81,7 @@ namespace MiBand_Heartrate_2.Devices
 
         public abstract void Dispose();
 
-        public abstract void Connect(string deviceId);
+        public abstract void Connect();
 
         public abstract void Disconnect();
 

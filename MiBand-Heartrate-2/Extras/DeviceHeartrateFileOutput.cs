@@ -31,13 +31,14 @@ namespace MiBand_Heartrate_2.Extras
 
         private void OnDeviceChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Heartrate")
+            if (e.PropertyName == "Heartrate" && Setting.Get("FileOutput", false))
             {
                 try
                 {
-                    using (StreamWriter f = new StreamWriter(_filename))
+                    using (var f = File.Open(_filename, FileMode.Create, FileAccess.Write, FileShare.Read))
                     {
-                        f.Write(_device.Heartrate);
+                        byte[] data = System.Text.Encoding.UTF8.GetBytes(_device.Heartrate.ToString());
+                        f.Write(data, 0, data.Length);
                     }
                 }
                 catch (Exception err)
