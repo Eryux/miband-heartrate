@@ -4,7 +4,7 @@ Enable and monitor heartrate with Mi Band device on Windows 10.
 
 ![miband heartrate](https://github.com/Eryux/miband-heartrate/raw/master/mibandheatrate-screen.png "Mi Band Heartrate screen")
 
-### Suported devices
+### Supported devices
 
 * Mi Band 2
 * Mi Band 3
