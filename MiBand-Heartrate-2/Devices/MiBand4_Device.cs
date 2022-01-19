@@ -199,7 +199,7 @@ namespace MiBand_Heartrate_2.Devices
         {
             if (_connectedDevice != null && _connectedDevice.ConnectionStatus == BluetoothConnectionStatus.Disconnected)
             {
-                Status = Devices.DeviceStatus.OFFLINE;
+                Disconnect();
             }
         }
 
