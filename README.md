@@ -60,7 +60,9 @@ Enable and monitor heartrate with Mi Band device on Windows 10.
 
 ### Build requirements
 
-* Windows SDK
+* Windows SDK 10.0.18362.1
+
+  Download : [Windows SDK and emulator archive](https://developer.microsoft.com/en-US/windows/downloads/sdk-archive/)
 * Visual Studio 2019
 
 
