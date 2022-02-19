@@ -83,6 +83,10 @@ Enable and monitor heartrate with Mi Band device on Windows 10.
 * [How I hacked my Xiaomi MiBand 2 fitness tracker — a step-by-step Linux guide by Andrey Nikishaev](https://medium.com/machine-learning-world/how-i-hacked-xiaomi-miband-2-to-control-it-from-linux-a5bd2f36d3ad)
 
 
+### Thirdparty licenses
+Rug.Osc | [MIT Licence](https://bitbucket.org/rugcode/rug.osc/wiki/License)
+
+
 ### License
 
 MIT License
