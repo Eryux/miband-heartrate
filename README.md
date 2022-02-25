@@ -1,4 +1,5 @@
 # Mi Band Heartrate
+[日本語](README.ja.md)
 
 Enable and monitor heartrate with Mi Band device on Windows 10.
 
@@ -9,7 +10,7 @@ Enable and monitor heartrate with Mi Band device on Windows 10.
 * Mi Band 2
 * Mi Band 3
 * Mi Band 4
-* Mi Band 5 (Testing)
+* Mi Band 5
 
 
 ### Requirements
@@ -71,7 +72,7 @@ If "Send OSC to VRChat" is enabled, this app will continue to send the following
 |/avatar/parameters/HeartRateInt|Int|Heart rate par min [0, 255]|
 |/avatar/parameters/HeartRateFloat|Float|Normalized Heart rate ([0, 255] -> [0, 1]) <br> This is useful when controlling shape keys with Radial.|
 |/avatar/parameters/HeartBeatInt|Int|1 : QRS Interval (Temporarily set it to 1/5 of the RR interval) <br> 0 : Other times|
-|/avatar/parameters/HeartBeatPulse|Bool|true : QRS Interval (Temporarily set it to 1/5 of the RR interval) <br> false : Other times|
+|/avatar/parameters/HeartBeatPulse|Bool|True : QRS Interval (Temporarily set it to 1/5 of the RR interval) <br> False : Other times|
 |/avatar/parameters/HeartBeatToggle|Bool|Reverses with each heartbeat|
 
 ### Build requirements
