@@ -36,8 +36,8 @@ namespace MiBand_Heartrate_2.Extras
             public static readonly string HeartBeatInt = $"{ParametersAddress}/HeartBeatInt";
 
             /// <summary>
-            /// true : QRS Interval (Temporarily set it to 1/5 of the RR interval)
-            /// false : Other times
+            /// True : QRS Interval (Temporarily set it to 1/5 of the RR interval)
+            /// False : Other times
             /// </summary>
             public static readonly string HeartBeatPulse = $"{ParametersAddress}/HeartBeatPulse";
 
