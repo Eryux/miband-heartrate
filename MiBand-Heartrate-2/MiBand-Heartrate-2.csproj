@@ -84,6 +84,7 @@
     <Compile Include="Devices\Dummy_Device.cs" />
     <Compile Include="Devices\MiBand2_3_Device.cs" />
     <Compile Include="Devices\MiBand4_Device.cs" />
+    <Compile Include="Extras\DeviceHeartrateOscOutput.cs" />
     <Compile Include="Extras\EnumExtension.cs" />
     <Compile Include="Extras\DeviceHeartrateCSVOutput.cs" />
     <Compile Include="Extras\DeviceHeartrateFileOutput.cs" />

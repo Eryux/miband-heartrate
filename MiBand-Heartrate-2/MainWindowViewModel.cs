@@ -103,11 +103,28 @@ namespace MiBand_Heartrate_2
             }
         }
 
+        bool _enableOscOutput = true;
+
+        public bool EnableOscOutput
+        {
+            get { return _enableOscOutput; }
+            set
+            {
+                _enableOscOutput = value;
+
+                Setting.Set("OscOutput", _enableOscOutput);
+
+                InvokePropertyChanged("EnableOscOutput");
+            }
+        }
+
         bool _guard = false;
 
         DeviceHeartrateFileOutput _fileOutput = null;
 
         DeviceHeartrateCSVOutput _csvOutput = null;
+
+        DeviceHeartrateOscOutput _oscOutput = null;
 
         // --------------------------------------
 
@@ -116,6 +133,7 @@ namespace MiBand_Heartrate_2
             ContinuousMode = Setting.Get("ContinuousMode", true);
             EnableFileOutput = Setting.Get("FileOutput", false);
             EnableCSVOutput = Setting.Get("CSVOutput", false);
+            EnableOscOutput = Setting.Get("OscOutput", true);
         }
 
         ~MainWindowViewModel()
@@ -259,6 +277,11 @@ namespace MiBand_Heartrate_2
                             _csvOutput = new DeviceHeartrateCSVOutput("heartrate.csv", Device);
                         }
 
+                        if (_enableOscOutput)
+                        {
+                            _oscOutput = new DeviceHeartrateOscOutput(Device);
+                        }
+
                     }, o =>
                     {
                         return Device != null && Device.Status == Devices.DeviceStatus.ONLINE_AUTH && !Device.HeartrateMonitorStarted;
@@ -283,6 +306,7 @@ namespace MiBand_Heartrate_2
 
                         _fileOutput = null;
                         _csvOutput = null;
+                        _oscOutput = null;
                     }, o =>
                     {
                         return Device != null && Device.HeartrateMonitorStarted;
