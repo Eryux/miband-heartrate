@@ -1,4 +1,5 @@
 # Mi Band Heartrate
+[日本語](README.ja.md)
 
 Enable and monitor heartrate with Mi Band device on Windows 10.
 
@@ -9,6 +10,7 @@ Enable and monitor heartrate with Mi Band device on Windows 10.
 * Mi Band 2
 * Mi Band 3
 * Mi Band 4
+* Mi Band 5
 
 
 ### Requirements
@@ -34,11 +36,11 @@ Enable and monitor heartrate with Mi Band device on Windows 10.
 
 * Once your device is successfully connected and authenticated, click on `Start` button
 
-#### For Mi Band 4
+#### For Mi Band 4/5
 
 * Get your authentication key of your device, visit ([freemyband.com](http://www.freemyband.com/)) for more information
 
-* Connect and pair you Mi Band 4 to your computer
+* Connect and pair you Mi Band 4/5 to your computer
 
 * Launch `MiBand-Heartrate.exe`
 
@@ -55,8 +57,23 @@ Enable and monitor heartrate with Mi Band device on Windows 10.
 
 * **Write realtime date in text file :** Continuously write heartrate value inside a text file
 
+* **Send OSC to VRChat :** Send your heartbeat and heart rate using OSC. See the next section for detailed specifications.
+
 * **Continuous mode :** Mi Band heartrate sensor can work in two different mode, one-shot and continuous. One-shot mode take 5 to 10 sec. to retrieve a heartrate value then stop. Continuous mode update heartrate value every 2 to 5 sec.
 
+
+## VRChat
+### Addresses
+
+If "Send OSC to VRChat" is enabled, this app will continue to send the following messages
+
+|Addresss|Value Type|Description|
+|-|-|-|
+|/avatar/parameters/HeartRateInt|Int|Heart rate par min [0, 255]|
+|/avatar/parameters/HeartRateFloat|Float|Normalized Heart rate ([0, 255] -> [0, 1]) <br> This is useful when controlling shape keys with Radial.|
+|/avatar/parameters/HeartBeatInt|Int|1 : QRS Interval (Temporarily set it to 1/5 of the RR interval) <br> 0 : Other times|
+|/avatar/parameters/HeartBeatPulse|Bool|True : QRS Interval (Temporarily set it to 1/5 of the RR interval) <br> False : Other times|
+|/avatar/parameters/HeartBeatToggle|Bool|Reverses with each heartbeat|
 
 ### Build requirements
 
@@ -81,6 +98,10 @@ Enable and monitor heartrate with Mi Band device on Windows 10.
 * [Mi Band 2 Authentication by leojrfs](https://leojrfs.github.io/writing/miband2-part1-auth/#reference), [python](https://github.com/leojrfs/miband2)
 * https://github.com/creotiv/MiBand2
 * [How I hacked my Xiaomi MiBand 2 fitness tracker — a step-by-step Linux guide by Andrey Nikishaev](https://medium.com/machine-learning-world/how-i-hacked-xiaomi-miband-2-to-control-it-from-linux-a5bd2f36d3ad)
+
+
+### Thirdparty licenses
+Rug.Osc | [MIT Licence](https://bitbucket.org/rugcode/rug.osc/wiki/License)
 
 
 ### License

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Collections.ObjectModel;
+using System.Windows.Data;
 using System.Windows.Input;
 using Windows.Devices.Enumeration;
 
@@ -57,6 +58,9 @@ namespace MiBand_Heartrate_2
 
         public ConnectionWindowViewModel()
         {
+            // Enables a CollectionView object to participate in synchronized access to a collection that is used on multiple threads.
+            BindingOperations.EnableCollectionSynchronization(Devices, new object());
+            
             _bluetooth = new BLE(new string[] {"System.Devices.Aep.DeviceAddress", "System.Devices.Aep.IsConnected"});
 
             _bluetooth.Watcher.Added += OnBluetoothAdded;

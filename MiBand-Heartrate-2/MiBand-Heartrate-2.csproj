@@ -38,6 +38,9 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Rug.Osc, Version=1.2.5.17694, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rug.Osc.1.2.5\lib\Rug.Osc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -81,6 +84,7 @@
     <Compile Include="Devices\Dummy_Device.cs" />
     <Compile Include="Devices\MiBand2_3_Device.cs" />
     <Compile Include="Devices\MiBand4_Device.cs" />
+    <Compile Include="Extras\DeviceHeartrateOscOutput.cs" />
     <Compile Include="Extras\EnumExtension.cs" />
     <Compile Include="Extras\DeviceHeartrateCSVOutput.cs" />
     <Compile Include="Extras\DeviceHeartrateFileOutput.cs" />
@@ -132,6 +136,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

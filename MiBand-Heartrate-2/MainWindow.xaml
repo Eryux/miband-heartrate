@@ -64,6 +64,7 @@
                 <CheckBox Margin="0 2" IsChecked="{Binding ContinuousMode, Mode=TwoWay}">Enable continuous mode</CheckBox>
                 <CheckBox Margin="0 2" IsChecked="{Binding EnableCSVOutput, Mode=TwoWay}">Export data in CSV file</CheckBox>
                 <CheckBox Margin="0 2" IsChecked="{Binding EnableFileOutput, Mode=TwoWay}">Write realtime data in text file</CheckBox>
+                <CheckBox Margin="0 2" IsChecked="{Binding EnableOscOutput, Mode=TwoWay}">Send OSC to VRChat</CheckBox>
             </StackPanel>
         </GroupBox>
 

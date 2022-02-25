@@ -11,7 +11,7 @@ namespace MiBand_Heartrate_2.Devices
         [Description("Mi Band 2/3")]
         MIBAND_2_3,
 
-        [Description("Mi Band 4")]
+        [Description("Mi Band 4/5")]
         MIBAND_4
     }
 
