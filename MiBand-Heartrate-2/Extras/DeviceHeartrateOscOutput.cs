@@ -25,22 +25,25 @@ namespace MiBand_Heartrate_2.Extras
             public static readonly string HeartRateInt = $"{ParametersAddress}/HeartRateInt";
 
             /// <summary>
-            /// Remap Heart rate [0, 255] to [0, 1]
+            /// Normalized Heart rate ([0, 255] -> [0, 1])
             /// </summary>
             public static readonly string HeartRateFloat = $"{ParametersAddress}/HeartRateFloat";
 
             /// <summary>
             /// 1 : QRS Interval (Temporarily set it to 1/5 of the RR interval)
-            /// 0 : Otherwise
+            /// 0 : Other times
             /// </summary>
             public static readonly string HeartBeatInt = $"{ParametersAddress}/HeartBeatInt";
 
             /// <summary>
-            /// True : QRS Interval (Temporarily set it to 1/5 of the RR interval)
-            /// False : Otherwise
+            /// true : QRS Interval (Temporarily set it to 1/5 of the RR interval)
+            /// false : Other times
             /// </summary>
             public static readonly string HeartBeatPulse = $"{ParametersAddress}/HeartBeatPulse";
 
+            /// <summary>
+            /// Reverses with each heartbeat
+            /// </summary>
             public static readonly string HeartBeatToggle = $"{ParametersAddress}/HeartBeatToggle";
         }
 
