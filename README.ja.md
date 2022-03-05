@@ -80,7 +80,11 @@ Windows10でMi Bandデバイスで心拍数を取得します。
 |Addresss|Value Type|Description|
 |-|-|-|
 |/avatar/parameters/HeartRateInt|Int|心拍数（毎分） [0, 255]|
-|/avatar/parameters/HeartRateFloat|Float|正規化された心拍数（毎分） ([0, 255] -> [0, 1]) <br> これはラジアルを使用したシェイプキーの操作をするときに有効です。[参考リンク](https://note.com/citron_vr/n/n7d54ebaebd83)|
+|/avatar/parameters/HeartRate3|Int|HeartRateIntと同じ|
+|/avatar/parameters/HeartRateFloat|Float|正規化された心拍数（毎分） ([0, 255] -> [-1, 1])|
+|/avatar/parameters/HeartRate|Float|HeartRateFloatと同じ|
+|/avatar/parameters/HeartRateFloat01|Float|正規化された心拍数（毎分） ([0, 255] -> [0, 1]) <br> これはラジアルを使用したシェイプキーの操作をするときに有効です。[参考リンク](https://note.com/citron_vr/n/n7d54ebaebd83)|
+|/avatar/parameters/HeartRate2|Float|HeartRateFloat01と同じ|
 |/avatar/parameters/HeartBeatInt|Int|1 : QRS時間（ドックンの時間）(心拍の1/5の時間としています) <br> 0 : それ以外の時間|
 |/avatar/parameters/HeartBeatPulse|Bool|True : QRS時間（ドックンの時間）(心拍の1/5の時間としています) <br> False : それ以外の時間|
 er timesarameters/HeartBeatToggle|Bool|心拍ごとに値が反転します|
@@ -108,7 +112,12 @@ er timesarameters/HeartBeatToggle|Bool|心拍ごとに値が反転します|
 * [Mi Band 2 Authentication by leojrfs](https://leojrfs.github.io/writing/miband2-part1-auth/#reference), [python](https://github.com/leojrfs/miband2)
 * https://github.com/creotiv/MiBand2
 * [How I hacked my Xiaomi MiBand 2 fitness tracker — a step-by-step Linux guide by Andrey Nikishaev](https://medium.com/machine-learning-world/how-i-hacked-xiaomi-miband-2-to-control-it-from-linux-a5bd2f36d3ad)
+
+VRChat
+* [vard88508/vrc-osc-miband-hrm: Mi Band/Amazfit heart rate monitor with OSC integration for VRChat](https://github.com/vard88508/vrc-osc-miband-hrm)
 * [ラジアルでのシェイプキー操作方法｜みかんねここ｜note](https://note.com/citron_vr/n/n7d54ebaebd83)
+* [OSC HeartRateSendersドキュメントページ - おめが？日記_(2)](https://omega.hatenadiary.jp/entry/2022/02/27/035024)
+* [【Mi スマートバンド(Mi Band) × VRChat OSC】自分の心拍数をアバターに表示する方法！ | Till0196のぼーびろく](https://till0196.com/post16907)
 
 
 ### Thirdparty licenses
