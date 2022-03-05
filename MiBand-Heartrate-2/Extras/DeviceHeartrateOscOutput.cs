@@ -23,11 +23,19 @@ namespace MiBand_Heartrate_2.Extras
             /// Heart rate par min [0, 255]
             /// </summary>
             public static readonly string HeartRateInt = $"{ParametersAddress}/HeartRateInt";
+            public static readonly string HeartRate3 = $"{ParametersAddress}/HeartRate3";
+
+            /// <summary>
+            /// Normalized Heart rate ([0, 255] -> [-1, 1])
+            /// </summary>
+            public static readonly string HeartRateFloat = $"{ParametersAddress}/HeartRateFloat";
+            public static readonly string HeartRate = $"{ParametersAddress}/HeartRate";
 
             /// <summary>
             /// Normalized Heart rate ([0, 255] -> [0, 1])
             /// </summary>
-            public static readonly string HeartRateFloat = $"{ParametersAddress}/HeartRateFloat";
+            public static readonly string HeartRateFloat01 = $"{ParametersAddress}/HeartRateFloat01";
+            public static readonly string HeartRate2 = $"{ParametersAddress}/HeartRate2";
 
             /// <summary>
             /// 1 : QRS Interval (Temporarily set it to 1/5 of the RR interval)
@@ -103,8 +111,18 @@ namespace MiBand_Heartrate_2.Extras
 
         private void OnChangeHeartrate()
         {
-            _oscSender.Send(new OscMessage(Addresses.HeartRateInt, (int)_device.Heartrate));
-            _oscSender.Send(new OscMessage(Addresses.HeartRateFloat, _device.Heartrate / 255f));
+            var heartRateInt = (int)_device.Heartrate;
+            var heartRateFloat = _device.Heartrate / 127f - 1f;
+            var heartRateFloat01 = _device.Heartrate / 255;
+            
+            _oscSender.Send(new OscMessage(Addresses.HeartRateInt, heartRateInt));
+            _oscSender.Send(new OscMessage(Addresses.HeartRate3, heartRateInt));
+            
+            _oscSender.Send(new OscMessage(Addresses.HeartRateFloat, heartRateFloat));
+            _oscSender.Send(new OscMessage(Addresses.HeartRate, heartRateFloat));
+            
+            _oscSender.Send(new OscMessage(Addresses.HeartRateFloat01, heartRateFloat01));
+            _oscSender.Send(new OscMessage(Addresses.HeartRate2, heartRateFloat01));
         }
 
         private void OnHeartrateMonitorStarted()
