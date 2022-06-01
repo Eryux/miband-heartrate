@@ -1,7 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Configuration;
 using System.Windows.Input;
-
+using Windows.Devices.Enumeration;
+using MiBand_Heartrate_2.Devices;
 using MiBand_Heartrate_2.Extras;
 
 namespace MiBand_Heartrate_2
@@ -36,6 +38,8 @@ namespace MiBand_Heartrate_2
 
         bool _isConnected = false;
 
+        public bool UseAutoConnect => UseAutoConnectSetting.ToLower() == "true";
+
         public bool IsConnected
         {
             get { return _isConnected; }
@@ -57,6 +61,13 @@ namespace MiBand_Heartrate_2
                 InvokePropertyChanged("StatusText");
             }
         }
+
+        private string UseAutoConnectSetting => ConfigurationManager.AppSettings["useAutoConnect"];
+        private string DefaultDeviceVersionSetting => ConfigurationManager.AppSettings["autoConnectDeviceVersion"];
+        
+        private string DefaultDeviceName => ConfigurationManager.AppSettings["autoConnectDeviceName"];
+        
+        private string DefaultDeviceAuthKey => ConfigurationManager.AppSettings["autoConnectDeviceAuthKey"];
 
         bool _continuousMode = true;
 
@@ -204,6 +215,66 @@ namespace MiBand_Heartrate_2
         }
 
         // --------------------------------------
+        
+        // ref : https://github.com/hai-vr/miband-heartrate-osc/commit/754aac408b03a145560a619a26e851ff60cf0293
+        
+        ICommand _command_auto_connect;
+
+        public ICommand Command_Auto_Connect
+        {
+            get
+            {
+                if (_command_auto_connect == null)
+                {
+                    _command_auto_connect = new RelayCommand<object>("connect", "Connect to a device", o =>
+                    {
+                        var bluetooth = new BLE(new[]
+                            { "System.Devices.Aep.DeviceAddress", "System.Devices.Aep.IsConnected" });
+
+                        var defaultDeviceVersion = DefaultDeviceVersionSetting;
+                        var defaultDeviceName = DefaultDeviceName;
+                        var defaultDeviceAuthKey = DefaultDeviceAuthKey;
+
+                        void OnBluetoothAdded(DeviceWatcher sender, DeviceInformation args)
+                        {
+                            if (args.Name != defaultDeviceName) return;
+                            
+                            Device device;
+                            switch (defaultDeviceVersion)
+                            {
+                                case "2":
+                                case "3":
+                                    device = new MiBand2_3_Device(args);
+                                    break;
+                                case "4":
+                                case "5":
+                                    device = new MiBand4_Device(args, defaultDeviceAuthKey);
+                                    break;
+                                default:
+                                    throw new ArgumentOutOfRangeException();
+                            }
+
+                            device.Connect();
+
+                            Device = device;
+
+                            if (bluetooth.Watcher != null)
+                            {
+                                bluetooth.Watcher.Added -= OnBluetoothAdded;
+                            }
+
+                            bluetooth.StopWatcher();
+                        }
+
+                        bluetooth.Watcher.Added += OnBluetoothAdded;
+
+                        bluetooth.StartWatcher();
+                    }, o => { return Device == null || Device.Status == DeviceStatus.OFFLINE; });
+                }
+
+                return _command_auto_connect;
+            }
+        }
 
         ICommand _command_connect;
 

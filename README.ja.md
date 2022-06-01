@@ -31,7 +31,7 @@ Windows10でMi Bandデバイスで心拍数を取得します。
 
 * `MiBand-Heartrate.exe`を起動してください
 
-* `Connect`ボタンを押してください
+* `Manual Connect`ボタンを押してください
 
 * `Select your device`から`Mi Band 2`や`Mi Band 3`を選択してください
 
@@ -49,7 +49,7 @@ Windows10でMi Bandデバイスで心拍数を取得します。
 
 * `MiBand-Heartrate.exe`を起動してください
 
-* `Connect`ボタンを押してください
+* `Manual Connect`ボタンを押してください
 
 * `Select your device`から`Mi Band 4`や`Mi Band 5`を選択してください
 
@@ -60,6 +60,36 @@ Windows10でMi Bandデバイスで心拍数を取得します。
 * 新しいウィンドウが出るので、そこに認証キーを入力して`Ok`を押してください
 
 * デバイスが正しく接続・認証されました、`Start`ボタンを押してください
+
+
+### 自動接続
+
+`MiBand-Heartrate-2.exe`と同じ階層にある`MiBand-Heartrate-2.exe.config`を設定することで自動接続をすることができるようになります。
+
+自動接続を有効にした場合、`Manual Connect`ボタンが`Auto Connect`ボタンに変わります。
+
+|キー|説明|備考|
+|-|-|-|
+|useAutoConnect|自動接続するかどうか|自動接続を有効にする場合は`true`|
+|autoConnectDeviceVersion|デバイスのバージョン|MiBand 4の場合は`4`、MiBand 5の場合は`5`|
+|autoConnectDeviceName|Bluetoothデバイスの名前|基本的にはMiBand 5の場合は`MiBand 5`|
+|autoConnectDeviceAuthkey|32文字の認証キー|例:`0123456789abcdef0123456789abcdef`|
+
+設定例
+``` xml
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.8" />
+    </startup>
+    <appSettings>
+        <add key="useAutoConnect" value="true"/>
+        <add key="autoConnectDeviceVersion" value="5"/>
+        <add key="autoConnectDeviceName" value="Mi Smart Band 5"/>
+        <add key="autoConnectDeviceAuthKey" value="0123456789abcdef0123456789abcdef"/>
+    </appSettings>
+</configuration>
+```
 
 
 ### オプション

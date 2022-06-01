@@ -32,7 +32,7 @@ Enable and monitor heartrate with Mi Band device on Windows 10.
 
 * Launch `MiBand-Heartrate.exe`
 
-* Click on `Connect` button and select your device from device list and set model on `Mi Band 2` or `Mi Band 3` then click on `Connect`
+* Click on `Manual Connect` button and select your device from device list and set model on `Mi Band 2` or `Mi Band 3` then click on `Connect`
 
 * Once your device is successfully connected and authenticated, click on `Start` button
 
@@ -44,11 +44,41 @@ Enable and monitor heartrate with Mi Band device on Windows 10.
 
 * Launch `MiBand-Heartrate.exe`
 
-* Click on `Connect` button and select your device from device list and set model on `Mi Band 4` then click on `Connect`
+* Click on `Manual Connect` button and select your device from device list and set model on `Mi Band 4` then click on `Connect`
 
 * A new window should appear, enter your authentication key then click on `Ok`
 
 * Once your device is successfully connected and authenticated, click on `Start` button
+
+
+### Automatic Connection
+
+You can make an automatic connection by setting `MiBand-Heartrate-2.exe.config` in the same directory as `MiBand-Heartrate-2.exe`.
+
+If you enable automatic connection, the `Manual Connect` button changes to a `Auto Connect` button.
+
+|Key|Description|Note|
+|-|-|-|
+|useAutoConnect|Whether to connect automatically|`true` to enable automatic connection|
+|autoConnectDeviceVersion|Device version|`4` for Mi Band 4,`5` for Mi Band 5|
+|autoConnectDeviceName|Bluetooth device name|Basically `MiBand 5` for Mi Band 5|
+|autoConnectDeviceAuthkey|32-characters authentication key|Example: `0123456789abcdef0123456789abcdef`|
+
+Example
+``` xml
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.8" />
+    </startup>
+    <appSettings>
+        <add key="useAutoConnect" value="true"/>
+        <add key="autoConnectDeviceVersion" value="5"/>
+        <add key="autoConnectDeviceName" value="Mi Smart Band 5"/>
+        <add key="autoConnectDeviceAuthKey" value="0123456789abcdef0123456789abcdef"/>
+    </appSettings>
+</configuration>
+```
 
 
 ### Options

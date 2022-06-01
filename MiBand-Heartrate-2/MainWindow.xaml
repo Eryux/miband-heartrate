@@ -25,11 +25,14 @@
             <Label Grid.Column="0" VerticalAlignment="Center" Content="{Binding StatusText}"></Label>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
-                <Button Content="Connect" Padding="10 5" Margin="5 5 0 5" Command="{Binding Command_Connect}">
+                <Button Content="Manual Connect" Padding="10 5" Margin="5 5 0 5" Command="{Binding Command_Connect}">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Visibility" Value="Visible" />
                             <Style.Triggers>
+                                <DataTrigger Binding="{Binding UseAutoConnect}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
                                 <DataTrigger Binding="{Binding IsConnected}" Value="True">
                                     <Setter Property="Visibility" Value="Collapsed" />
                                 </DataTrigger>
@@ -44,6 +47,21 @@
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsConnected}" Value="True">
                                     <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Content="Auto Connect" Padding="10 5" Margin="5 5 0 5" Command="{Binding Command_Auto_Connect}">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding UseAutoConnect}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsConnected}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
