@@ -113,7 +113,7 @@ namespace MiBand_Heartrate_2.Extras
         {
             var heartRateInt = (int)_device.Heartrate;
             var heartRateFloat = _device.Heartrate / 127f - 1f;
-            var heartRateFloat01 = _device.Heartrate / 255;
+            var heartRateFloat01 = _device.Heartrate / 255f;
             
             _oscSender.Send(new OscMessage(Addresses.HeartRateInt, heartRateInt));
             _oscSender.Send(new OscMessage(Addresses.HeartRate3, heartRateInt));
